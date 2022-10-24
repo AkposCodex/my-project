@@ -23,21 +23,13 @@ export default {
 </script>
 
 <template>
-  <nav class="px-10 py-4 dark:bg-transparent w-4/5 ml-64 text-black">
+  <nav class="md:px-10 md:py-4 dark:bg-transparent w-full md:w-4/5 md:ml-64 text-black">
     <div
-      class="flex justify-between w-full relative items-center space-x-6"
+      class="flex md:flex-row flex-col space-y-3 justify-between w-full md:w-4/5 relative items-center md:space-x-6"
     >
-      <!-- <div class="w-32">
-        <router-link to="/"
-          ><img
-            src="@/assets/icons/snappypayv1.svg"
-            alt=""
-        /></router-link>
-      </div> -->
-
       <h1 class="text-6xl pt-6">Dashboard</h1>
       <div class="flex items-center space-x-2">
-        <h1 class="text-4xl">Good Morning, David</h1>
+        <h1 class="text-4xl text-right">Good Morning, David</h1>
         <a href="/table"><img src="@/assets/icons/sun.png" alt="" width="64" height="64" /></a>
       </div>
       <a
@@ -91,7 +83,7 @@ export default {
           >Contact</router-link
         >
         <router-link
-          v-if="user"
+
           @click="menu = false"
           to="/checkout"
           class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
@@ -99,14 +91,12 @@ export default {
         >
         <a
           href="#"
-          v-if="user"
           @click="logout()"
           class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700"
           >Log Out</a
         >
         <a
           href="#"
-          v-if="!user"
           @click="
             btnClick();
             menu = false;

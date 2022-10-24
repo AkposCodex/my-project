@@ -100,14 +100,14 @@
         <ul>
           <li class="mx-3">
             <button
-              class="rounded-md p-3 text-white w-3/5"
+              class="rounded-md p-3 text-white w-full"
               :class="{ 'bg-white bg-opacity-40': tile == 1 }"
               @click="
                 tile = 1;
                 visible = false;
               "
             >
-              Orders
+              Home
             </button>
           </li>
           <br />
@@ -120,7 +120,7 @@
                 visible = false;
               "
             >
-              Profile
+              Orders
             </button>
           </li>
           <br />
@@ -154,7 +154,7 @@
     </div>
     <DashedNav />
     <div
-      class="md:ml-64 p-7 w-4/5 mx-auto overflow-auto"
+      class="md:ml-64 p-7 md:w-4/5 mx-auto overflow-auto"
       id="profile"
       v-if="tile == 1"
     >
@@ -172,7 +172,7 @@
           class="rounded-lg flex flex-col w-full justify-between bg-white px-4 py-6 h-46"
         >
           <img src="@/assets/icons/money.png" alt="" width="52" height="52" />
-          <p class="text-5xl text-center text-[#C7F5C7]">500,000</p>
+          <p class="md:text-5xl text-4xl text-center text-[#C7F5C7]">500,000</p>
           <p class="text-xl text-right font-bold text-black">Total Volume</p>
         </div>
         <div
@@ -218,11 +218,10 @@
           </p>
         </div>
       </section>
-      <div id="bot" class="w-[20rem] p-2 mx-auto my-9">
-        <img src="../assets/svg/undraw_delivery_truck_vt6p.svg" alt="" />
-        <!-- <img src="@/assets/svg/undraw_in_sync_re_jlqd.svg" alt=""> -->
+      <div id="bot" class="w-[20rem] hidden p-2 mx-auto my-9">
+        <img src="../assets/svg/undraw_delivery_truck_vt6p.svg" alt="" /> 
       </div>
-      <section class="orders">
+      <section class="orders hidden">
         <div
           class="grid gap-3 sm:gap-9 lg:grid-cols-3 md:grid-cols-2 grid-cols-2 mx-3 my-9"
         >
@@ -244,8 +243,6 @@
                 />
                 <p>{{}}</p>
               </div>
-              <!-- <p>{{ orders.price }}</p>
-              <p>{{ orders.qty }}</p> -->
               <br />
               <p class="text-md"></p>
             </div>
@@ -253,8 +250,8 @@
         </div>
       </section>
     </div>
-    <div class="md:ml-64 p-6 w-4/5" v-if="tile == 3" id="transaction-history">
-      <div class="md:hidden p-9 rounded-xl mx-auto bg-white">
+    <div class="md:ml-64 p-6 w-full md:w-4/5" v-if="tile == 3" id="transaction-history">
+      <!-- <div class="md:hidden p-9 rounded-xl mx-auto bg-white">
         <h1 class="text-center text-3xl">Transaction History</h1>
         <div
           class="rounded-3xl shadow-sm justify-between px-3 py-6 bg-gray-100 m-3 flex"
@@ -296,102 +293,31 @@
           </div>
           <p class="text-green-700">₦300</p>
         </div>
-      </div>
-      <div class="hidden md:block p-9 rounded-xl mx-auto bg-white">
+      </div> -->
+      <div class=" md:block p-9 rounded-xl mx-auto bg-white">
         <h1 class="text-left p-3 text-3xl">Transaction History</h1>
-        <!-- <div class="w-full bg-white">
-          <table class="table-auto w-full">
-            <thead class="border-b md:text-xl text-[#8A8888] border-[#C8C8C8]">
-              <td>Description</td>
-              <td>Quantity</td>
-              <td>Date</td>
-              <td>Transaction Type</td>
-              <td>Amount</td>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="m-0 p-3 border-b border-[#C8C8C8]">
-                  <div class="flex space-x-3 items-center">
-                    <img
-                      src="@/assets/icons/pos-64.png"
-                      alt=""
-                      width="40"
-                      height="40"
-                      class="bg-gray-100 p-0.5 rounded-lg"
-                    />
-                    <p>Dano Milk</p>
-                  </div>
-                </td>
-                <td class="p-3 border-b border-[#C8C8C8]">20</td>
-                <td class="p-3 border-b border-[#C8C8C8]">2022-09-30 12:00</td>
-                <td class="p-3 border-b border-[#C8C8C8]">PURCHASE</td>
-                <td class="p-3 border-b border-[#C8C8C8] text-green-500">
-                  3500
-                </td>
-              </tr>
-              <tr>
-                <td class="m-0 p-3 border-b border-[#C8C8C8]">
-                  <div class="flex space-x-3 items-center">
-                    <img
-                      src="@/assets/icons/pos-64.png"
-                      alt=""
-                      width="40"
-                      height="40"
-                      class="bg-gray-100 p-0.5 rounded-lg"
-                    />
-                    <p>Dano Milk</p>
-                  </div>
-                </td>
-                <td class="p-3 border-b border-[#C8C8C8]">10</td>
-                <td class="p-3 border-b border-[#C8C8C8]">2022-09-30 12:00</td>
-                <td class="p-3 border-b border-[#C8C8C8]">PURCHASE</td>
-                <td class="p-3 border-b border-[#C8C8C8] text-green-500">
-                  3500
-                </td>
-              </tr>
-              <tr>
-                <td class="m-0 p-3 border-b border-[#C8C8C8]">
-                  <div class="flex space-x-3 items-center">
-                    <img
-                      src="@/assets/icons/send-64.png"
-                      alt=""
-                      width="40"
-                      height="40"
-                      class="bg-gray-100 p-0.5 rounded-lg"
-                    />
-                    <p>Akpos David</p>
-                  </div>
-                </td>
-                <td class="p-3 border-b border-[#C8C8C8]">1</td>
-                <td class="p-3 border-b border-[#C8C8C8]">2022-09-30 12:00</td>
-                <td class="p-3 border-b border-[#C8C8C8]">TRANSFER</td>
-                <td class="p-3 border-b border-[#C8C8C8] text-orange-500">
-                  3500
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div> -->
         <VueTableLite
           :is-loading="table.isLoading"
           :columns="table.columns"
           :rows="table.rows"
+          :is-re-search="table.isReSearch"
           :total="table.totalRecordCount"
           :sortable="table.sortable"
+          :messages="table.messages"
           @do-search="doSearch"
           @is-finished="table.isLoading = false"
         />
       </div>
     </div>
     <div
-      class="md:ml-64 p-6 w-4/5 flex flex-col space-y-3"
+      class="md:ml-64 p-6 w-full md:w-4/5 flex flex-col space-y-3"
       v-if="tile == 2"
       id="inventory"
     >
       <div class="w-full p-9 rounded-xl mx-auto bg-white" id="overview">
         <h1 class="text-left uppercase text-3xl">Overview</h1>
         <!-- bg-gradient-to-bl shadow-lg col-span-2 to-[#F7A8C3] from-[#FFDFDF] -->
-        <div class="flex space-x-6 w-4/5 mt-6 mx-auto">
+        <div class="flex space-x-6 w-full md:w-4/5 mt-6 mx-auto">
           <div
             class="bg-white drop-shadow-lg rounded-lg flex flex-col justify-between bg-white w-max border border-2 border-[#C8C8C8] p-6 h-46"
           >
@@ -445,7 +371,7 @@
           </button>
         </div>
         <div
-          class="flex border-solid justify-between items-center w-2/5 mx-auto rounded-md px-3 py-2 border-2 border-[#f2f2f2]"
+          class="flex border-solid justify-between items-center w-4/5 md:w-2/5 mx-auto rounded-md px-3 py-2 border-2 border-[#f2f2f2]"
         >
           <p>Filters</p>
           <div class="flex space-x-3">
@@ -586,6 +512,32 @@
 import VueTableLite from "vue3-table-lite";
 import { defineComponent, reactive } from "vue";
 import axios from "axios";
+
+const sampleData1 = (offst, limit) => {
+  offst = offst + 1;
+  let data = [];
+  for (let i = offst; i <= limit; i++) {
+    data.push({
+      id: i,
+      name: "TEST" + i,
+      email: "test" + i + "@example.com",
+    });
+  }
+  return data;
+};
+// Fake Data for 'desc' sortable
+const sampleData2 = (offst, limit) => {
+  let data = [];
+  for (let i = limit; i > offst; i--) {
+    data.push({
+      id: i,
+      name: "TEST" + i,
+      email: "test" + i + "@example.com",
+    });
+  }
+  return data;
+};
+
 export default {
   setup() {
     // Get toast interface
@@ -593,111 +545,131 @@ export default {
     // return { toast };
     const table = reactive({
       isLoading: false,
+      isReSearch: false,
       columns: [
         {
-          label: "Description",
-          field: "description",
+          label: "ID",
+          field: "id",
           width: "3%",
           sortable: true,
           isKey: true,
         },
         {
-          label: "Quantity",
-          field: "quantity",
+          label: "Name",
+          field: "name",
           width: "10%",
           sortable: true,
+          display: function (row) {
+            return (
+              '<a href="javascript:void(0)" data-id="' +
+              row.id +
+              '" class="is-rows-el name-btn">' +
+              row.name +
+              "</a>"
+            );
+          },
         },
         {
-          label: "Date",
-          field: "date",
+          label: "Email",
+          field: "email",
           width: "15%",
           sortable: true,
         },
-        {
-          label: "Transaction Type",
-          field: "type",
-          width: "15%",
-          sortable: true,
-        },
-        {
-          label: "Amount",
-          field: "amount",
-          width: "15%",
-          sortable: true,
-        },
+        // {
+        //   label: "",
+        //   field: "quick",
+        //   width: "10%",
+        //   display: function (row) {
+        //     return (
+        //       '<button type="button" data-id="' +
+        //       row.id +
+        //       '" class="is-rows-el quick-btn">Button</button>'
+        //     );
+        //   },
+        // },
       ],
-      rows: [
-        {
-          description: "LOREM ipsum",
-          quantity: 1,
-          date: "2022-10-17 11:27:13",
-          type: "PURCHASE",
-          amount: 3000,
-        },
-        {
-          description: "LOREM ipsum",
-          quantity: 1,
-          date: "2022-10-17 11:27:13",
-          type: "PURCHASE",
-          amount: 3000,
-        },
-        {
-          description: "LOREM ipsum",
-          quantity: 1,
-          date: "2022-10-17 11:27:13",
-          type: "PURCHASE",
-          amount: 3000,
-        },
-        {
-          description: "LOREM ipsum",
-          quantity: 1,
-          date: "2022-10-17 11:27:13",
-          type: "PURCHASE",
-          amount: 3000,
-        },
-        {
-          description: "LOREM ipsum",
-          quantity: 1,
-          date: "2022-10-17 11:27:13",
-          type: "PURCHASE",
-          amount: 3000,
-        },
-      ],
+      rows: [],
       totalRecordCount: 0,
       sortable: {
         order: "id",
         sort: "asc",
       },
+      messages: {
+        pagingInfo: "Showing {0}-{1} of {2}",
+        pageSizeChangeLabel: "Row count:",
+        gotoPageLabel: "Go to page:",
+        noDataAvailable: "No data",
+      },
     });
     const doSearch = (offset, limit, order, sort) => {
       table.isLoading = true;
-      let url =
-        "https://www.example.com/api/some_endpoint?offset=" +
-        offset +
-        "&limit=" +
-        limit +
-        "&order=" +
-        order +
-        "&sort=" +
-        sort;
-      axios.get(url).then((response) => {
-        table.rows = response.rows;
-        table.totalRecordCount = response.count;
+      setTimeout(() => {
+        table.isReSearch = offset == undefined ? true : false;
+        if (offset >= 10 || limit >= 20) {
+          limit = 20;
+        }
+        if (sort == "asc") {
+          table.rows = sampleData1(offset, limit);
+        } else {
+          table.rows = sampleData2(offset, limit);
+        }
+        table.totalRecordCount = 20;
         table.sortable.order = order;
         table.sortable.sort = sort;
-      });
-      // End use axios to get data from Server
+      }, 600);
     };
     const tableLoadingFinish = (elements) => {
       table.isLoading = false;
+      Array.prototype.forEach.call(elements, function (element) {
+        if (element.classList.contains("name-btn")) {
+          element.addEventListener("click", function () {
+            console.log(this.dataset.id + " name-btn click!!");
+          });
+        }
+        if (element.classList.contains("quick-btn")) {
+          element.addEventListener("click", function () {
+            console.log(this.dataset.id + " quick-btn click!!");
+          });
+        }
+      });
     };
 
     // Get data first
+    const updateCheckedRows = (rowsKey) => {
+      console.log(rowsKey);
+    };
+
+    const row = [
+      {
+        id: "1",
+        type: "WTB",
+        rrn: "10235618483497249732",
+      },
+      {
+        id: "2",
+        type: "PURCHASE",
+        rrn: "37574693299476502677",
+      },
+      {
+        id: "3",
+        type: "WTB",
+        rrn: "84484574757231816718",
+      },
+    ];
+
+    const search = (sortable, term) => {
+      // select from transaction_log where filter like '%${{term}}%';
+      if (row.sortable == "PURCHASE" && row.rrn == "37574693299476502677") {
+        table.rows = row[1];
+      }
+    };
+    // First get data
     doSearch(0, 10, "id", "asc");
     return {
       table,
       doSearch,
       tableLoadingFinish,
+      updateCheckedRows,
     };
   },
   data() {
@@ -740,4 +712,24 @@ export default {
   },
 };
 </script>
-<style></style>
+<style scoped>
+::v-deep(.vtl-table .vtl-thead .vtl-thead-th) {
+  color: #fff;
+  background-color: #42b983;
+  border-color: #42b983;
+}
+::v-deep(.vtl-table td),
+::v-deep(.vtl-table tr) {
+  border: none;
+}
+::v-deep(.vtl-paging-info) {
+  color: rgb(172, 0, 0);
+}
+::v-deep(.vtl-paging-count-label),
+::v-deep(.vtl-paging-page-label) {
+  color: rgb(172, 0, 0);
+}
+::v-deep(.vtl-paging-pagination-page-link) {
+  border: none;
+}
+</style>
