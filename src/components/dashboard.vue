@@ -1,8 +1,9 @@
 <template>
   <div class="dark:text-white h-[100vh] overflow-scroll bg-[#F2F2F2] w-full">
+    <!-- rounded-tr-3xl rounded-br-3xl top-10 drop-shadow-[10px_10px_5px_rgba(0,0,0,0.15)] -->
     <div
       id="sidebar"
-      class="md:w-64 md:fixed h-[100vh] rounded-tr-3xl rounded-br-3xl top-10 drop-shadow-[10px_10px_5px_rgba(0,0,0,0.15)] md:block hidden bg-white dark:bg-opacity-40 p-2 text-white relative"
+      class="md:w-64 md:fixed h-[100vh] z-50 md:block hidden bg-white  shadow-md border-[#C8C8C8] dark:bg-opacity-40 p-2 text-white relative"
     >
       <div id="top" class="">
         <div
@@ -90,7 +91,10 @@
         </ul>
       </div>
     </div>
-    <div id="hd-top" class="bg-main md:hidden w-full z-20 h-auto">
+    <div
+      id="hd-top"
+      class="bg-main md:hidden fixed shadow-md w-full z-20 h-auto"
+    >
       <div class="flex justify-end">
         <button class="p-2" @click="visible = !visible">
           <img src="@/assets/icons/menu-50.png" alt="" width="32" height="32" />
@@ -158,7 +162,7 @@
       id="profile"
       v-if="tile == 1"
     >
-      <div class="grid gap-6 grid-cols-3 grid-rows-2 mx-auto w-full">
+      <div class="grid gap-6 md:grid-cols-3 md:grid-rows-2 mx-auto w-full">
         <div
           class="bg-gradient-to-bl shadow-lg col-span-2 to-main from-[#88E7DB] rounded-lg flex flex-col justify-between bg-white w-full py-2 px-4 h-46"
         >
@@ -202,7 +206,7 @@
       </div>
     </div>
     <div class="md:ml-64 p-6" v-if="tile == 4" id="order-history">
-      <section class="head dark:text-white">
+      <section class="head bg-white rounded-xl dark:text-white">
         <h1 class="text-5xl p-6">This is your Order History</h1>
         <div class="p-6">
           <div class="flex w-full justify-center">
@@ -219,7 +223,7 @@
         </div>
       </section>
       <div id="bot" class="w-[20rem] hidden p-2 mx-auto my-9">
-        <img src="../assets/svg/undraw_delivery_truck_vt6p.svg" alt="" /> 
+        <img src="../assets/svg/undraw_delivery_truck_vt6p.svg" alt="" />
       </div>
       <section class="orders hidden">
         <div
@@ -250,7 +254,11 @@
         </div>
       </section>
     </div>
-    <div class="md:ml-64 p-6 w-full md:w-4/5" v-if="tile == 3" id="transaction-history">
+    <div
+      class="md:ml-64 p-6 w-full md:w-4/5"
+      v-if="tile == 3"
+      id="transaction-history"
+    >
       <!-- <div class="md:hidden p-9 rounded-xl mx-auto bg-white">
         <h1 class="text-center text-3xl">Transaction History</h1>
         <div
@@ -294,19 +302,21 @@
           <p class="text-green-700">₦300</p>
         </div>
       </div> -->
-      <div class=" md:block p-9 rounded-xl mx-auto bg-white">
+      <div class="md:block md:p-9 p-3 rounded-xl mx-auto bg-white">
         <h1 class="text-left p-3 text-3xl">Transaction History</h1>
-        <VueTableLite
-          :is-loading="table.isLoading"
-          :columns="table.columns"
-          :rows="table.rows"
-          :is-re-search="table.isReSearch"
-          :total="table.totalRecordCount"
-          :sortable="table.sortable"
-          :messages="table.messages"
-          @do-search="doSearch"
-          @is-finished="table.isLoading = false"
-        />
+        <div class="overflow-x-scroll w-full z-10">
+          <VueTableLite
+            :is-loading="table.isLoading"
+            :columns="table.columns"
+            :rows="table.rows"
+            :is-re-search="table.isReSearch"
+            :total="table.totalRecordCount"
+            :sortable="table.sortable"
+            :messages="table.messages"
+            @do-search="doSearch"
+            @is-finished="table.isLoading = false"
+          />
+        </div>
       </div>
     </div>
     <div
@@ -317,7 +327,9 @@
       <div class="w-full p-9 rounded-xl mx-auto bg-white" id="overview">
         <h1 class="text-left uppercase text-3xl">Overview</h1>
         <!-- bg-gradient-to-bl shadow-lg col-span-2 to-[#F7A8C3] from-[#FFDFDF] -->
-        <div class="flex space-x-6 w-full md:w-4/5 mt-6 mx-auto">
+        <div
+          class="flex flex-col md:flex-row md:space-x-6 xs:space-y-6 w-full md:w-4/5 mt-6 mx-auto"
+        >
           <div
             class="bg-white drop-shadow-lg rounded-lg flex flex-col justify-between bg-white w-max border border-2 border-[#C8C8C8] p-6 h-46"
           >
@@ -360,7 +372,7 @@
           </div>
         </div>
       </div>
-      <div class="w-full p-9 rounded-xl mx-auto bg-white">
+      <div class="w-full md:p-9 p-3 rounded-xl mx-auto bg-white">
         <div id="header" class="flex justify-between p-3">
           <h1 class="text-left uppercase text-3xl">Inventory</h1>
           <button
@@ -371,7 +383,7 @@
           </button>
         </div>
         <div
-          class="flex border-solid justify-between items-center w-4/5 md:w-2/5 mx-auto rounded-md px-3 py-2 border-2 border-[#f2f2f2]"
+          class="flex border-solid justify-between items-center w-full sm:w-4/5 md:w-2/5 mx-auto rounded-md px-3 py-2 border-2 border-[#f2f2f2]"
         >
           <p>Filters</p>
           <div class="flex space-x-3">
@@ -388,7 +400,7 @@
           </div>
         </div>
         <table class="table-auto w-full">
-          <thead class="border-b md:text-xl border-[#C8C8C8]">
+          <thead class="border-b text-sm md:text-xl border-[#C8C8C8]">
             <td class="border-b border-[#C8C8C8] md:p-4 text-[#8A8888]">
               Product Name
             </td>
@@ -407,13 +419,29 @@
           </thead>
           <tbody>
             <tr>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">
+              <td
+                class="border-b border-[#C8C8C8] text-sm md:text-base md:p-3 mx-auto"
+              >
                 Cream Cheese
               </td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">500</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">200</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">500</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">
+              <td
+                class="border-b border-[#C8C8C8] text-sm md:text-base md:p-3 mx-auto"
+              >
+                500
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] text-sm md:text-base md:p-3 mx-auto"
+              >
+                200
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] text-sm md:text-base md:p-3 mx-auto"
+              >
+                500
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] text-sm md:text-base md:p-3 mx-auto"
+              >
                 <button @click="clear(index, items.price)" class="w-full">
                   <img
                     src="@/assets/icons/trash.svg"
@@ -426,13 +454,29 @@
               </td>
             </tr>
             <tr>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
                 Cream Cheese
               </td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">500</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">200</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">500</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
+                500
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
+                200
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
+                500
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
                 <button @click="clear(index, items.price)" class="w-full">
                   <img
                     src="@/assets/icons/trash.svg"
@@ -445,13 +489,29 @@
               </td>
             </tr>
             <tr>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
                 Cream Cheese
               </td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">500</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">200</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">500</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
+                500
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
+                200
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
+                500
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
                 <button @click="clear(index, items.price)" class="w-full">
                   <img
                     src="@/assets/icons/trash.svg"
@@ -464,13 +524,29 @@
               </td>
             </tr>
             <tr>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
                 Cream Cheese
               </td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">500</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">200</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">500</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
+                500
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
+                200
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
+                500
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
                 <button @click="clear(index, items.price)" class="w-full">
                   <img
                     src="@/assets/icons/trash.svg"
@@ -483,13 +559,29 @@
               </td>
             </tr>
             <tr>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
                 Final Fantasy VII
               </td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">500</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">1300</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">1700</td>
-              <td class="border-b border-[#C8C8C8] md:p-3 mx-auto">
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
+                500
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
+                1300
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
+                1700
+              </td>
+              <td
+                class="border-b border-[#C8C8C8] md:p-3 text-sm md:text-base mx-auto"
+              >
                 <button @click="clear(index, items.price)" class="w-full">
                   <img
                     src="@/assets/icons/trash.svg"
@@ -514,25 +606,31 @@ import { defineComponent, reactive } from "vue";
 import axios from "axios";
 
 const sampleData1 = (offst, limit) => {
+  let newDate = new Date().toDateString();
   offst = offst + 1;
   let data = [];
   for (let i = offst; i <= limit; i++) {
     data.push({
-      id: i,
-      name: "TEST" + i,
-      email: "test" + i + "@example.com",
+      description: "TEST" + i,
+      quantity: i * 5,
+      date: newDate.replace("2022", "22'"),
+      type: "PURCHASE",
+      amount: 300 + i * 2,
     });
   }
   return data;
 };
 // Fake Data for 'desc' sortable
 const sampleData2 = (offst, limit) => {
+  let newDate = new Date().toDateString();
   let data = [];
   for (let i = limit; i > offst; i--) {
     data.push({
-      id: i,
-      name: "TEST" + i,
-      email: "test" + i + "@example.com",
+      description: "TEST" + i,
+      quantity: i * 5,
+      date: newDate.replace("2022", "22'"),
+      type: "PURCHASE",
+      amount: 300 + i * 2,
     });
   }
   return data;
@@ -548,31 +646,45 @@ export default {
       isReSearch: false,
       columns: [
         {
-          label: "ID",
-          field: "id",
+          label: "Description",
+          field: "description",
           width: "3%",
           sortable: true,
           isKey: true,
         },
         {
-          label: "Name",
-          field: "name",
-          width: "10%",
+          label: "Quantity",
+          field: "quantity",
+          width: "3%",
           sortable: true,
           display: function (row) {
             return (
               '<a href="javascript:void(0)" data-id="' +
               row.id +
               '" class="is-rows-el name-btn">' +
-              row.name +
+              row.quantity +
               "</a>"
             );
           },
         },
         {
-          label: "Email",
-          field: "email",
-          width: "15%",
+          label: "Date",
+          field: "date",
+          width: "10%",
+          sortable: true,
+          isKey: true,
+        },
+        {
+          label: "Transaction Type",
+          field: "type",
+          width: "3%",
+          sortable: true,
+          isKey: true,
+        },
+        {
+          label: "Amount",
+          field: "amount",
+          width: "3%",
           sortable: true,
         },
         // {
@@ -633,12 +745,9 @@ export default {
         }
       });
     };
-
-    // Get data first
     const updateCheckedRows = (rowsKey) => {
       console.log(rowsKey);
     };
-
     const row = [
       {
         id: "1",
@@ -656,7 +765,6 @@ export default {
         rrn: "84484574757231816718",
       },
     ];
-
     const search = (sortable, term) => {
       // select from transaction_log where filter like '%${{term}}%';
       if (row.sortable == "PURCHASE" && row.rrn == "37574693299476502677") {
